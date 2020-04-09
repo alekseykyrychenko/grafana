@@ -14,7 +14,7 @@ if [[ ${ROOT_URL} == 'null' ]];
      sleep 20
      exit
    fi
-sed -i 's/ROOT_URL/'"${ROOT_URL}"'/' ${CONFIG_FILE}
+sed -i 's#ROOT_URL#'"${ROOT_URL}"'#' ${CONFIG_FILE}
 echo ${LINE}
 echo 'cat '${CONFIG_FILE}
 cat ${CONFIG_FILE}
