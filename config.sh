@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo Start Grafana
+echo Config
 source /etc/sysconfig/grafana-server
 cd /usr/share/grafana
 CONFIG_DIR='/etc/dockerconf/grafana'
@@ -14,8 +14,11 @@ if [[ ${ROOT_URL} == 'null' ]];
      exit
    fi
 sed -i 's/ROOT_URL/${ROOT_URL}/' ${CONFIG_FILE}
+echo ''
+echo 'cat '${CONFIG_FILE}
 cat ${CONFIG_FILE}
 
+echo Start Grafana
 /usr/sbin/grafana-server    --config=${CONF_FILE}                                   \
                             --pidfile=${PID_FILE_DIR}/grafana-server.pid            \
                             --packaging=rpm                                         \
