@@ -21,6 +21,8 @@ cat ${CONFIG_FILE}
 echo ${LINE}
 
 echo Start Grafana
+mkdir /var/run/grafana
+chown grafana.grafana /var/run/grafana
 su -s /bin/bash grafana -c "/usr/sbin/grafana-server    --config=${CONF_FILE}       \
                             --pidfile=${PID_FILE_DIR}/grafana-server.pid            \
                             --packaging=rpm                                         \
