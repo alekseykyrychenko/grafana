@@ -5,7 +5,7 @@ source /etc/sysconfig/grafana-server
 cd /usr/share/grafana
 CONFIG_DIR='/etc/dockerconf/grafana'
 CONFIG_FILE='/etc/grafana/grafana.ini'
-echo ${CONFIG_DIR}/grafana.ini > ${CONFIG_FILE}
+cat ${CONFIG_DIR}/grafana.ini > ${CONFIG_FILE}
 
 if [[ ${ROOT_URL} == 'null' ]];
    then
