@@ -14,6 +14,7 @@ if [[ ${ROOT_URL} == 'null' ]];
      exit
    fi
 sed -i 's/ROOT_URL/${ROOT_URL}/' ${CONFIG_FILE}
+cat ${CONFIG_FILE}
 
 /usr/sbin/grafana-server    --config=${CONF_FILE}                                   \
                             --pidfile=${PID_FILE_DIR}/grafana-server.pid            \
