@@ -11,4 +11,3 @@ cd /usr/share/grafana
                             cfg:default.paths.data=${DATA_DIR}                      \
                             cfg:default.paths.plugins=${PLUGINS_DIR}                \
                             cfg:default.paths.provisioning=${PROVISIONING_CFG_DIR}
-echo OK
