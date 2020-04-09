@@ -7,7 +7,13 @@ CONFIG_DIR='/etc/dockerconf/grafana'
 CONFIG_FILE='/etc/grafana/grafana.ini'
 echo ${CONFIG_DIR}/grafana.ini > ${CONFIG_FILE}
 
-sed -i 's//${ROOT_URL}/' ${CONFIG_FILE}
+if [[ ${ROOT_URL} == 'null' ]];
+   then
+     echo 'No set ROOT_URL'
+     sleep 20
+     exit
+   fi
+sed -i 's/ROOT_URL/${ROOT_URL}/' ${CONFIG_FILE}
 
 /usr/sbin/grafana-server    --config=${CONF_FILE}                                   \
                             --pidfile=${PID_FILE_DIR}/grafana-server.pid            \
