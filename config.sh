@@ -5,13 +5,23 @@ source /etc/sysconfig/grafana-server
 cd /usr/share/grafana
 CONFIG_DIR='/etc/dockerconf/grafana'
 CONFIG_FILE='/etc/grafana/grafana.ini'
+CONFIG_DB='/etc/grafana/'
+SLEEP='20'
 LINE='---------------------------'
-cat ${CONFIG_DIR}/grafana.ini > ${CONFIG_FILE}
+GIT_CONFIG=${CONFIG_DIR}/grafana.ini
+if [[ -f ${GIT_CONFIG} ]];
+  then
+    cat ${GIT_CONFIG} > ${CONFIG_FILE}
+  else
+   echo 'No config file '${GIT_CONFIG}
+   sleep ${SLEEP}
+   exit
+  fi
 
 if [[ ${ROOT_URL} == 'null' ]];
    then
      echo 'No set ROOT_URL'
-     sleep 20
+     sleep ${SLEEP}
      exit
    fi
 sed -i 's#ROOT_URL#'"${ROOT_URL}"'#' ${CONFIG_FILE}
