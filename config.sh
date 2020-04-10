@@ -31,7 +31,7 @@ if [[ -f ${CONFIG_DB} ]];
     echo 'No DB file '${CONFIG_DB}
     sleep ${SLEEP}
     exit
-  done
+  fi
 
 if [[ ${ROOT_URL} == 'null' ]];
    then
