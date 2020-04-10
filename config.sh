@@ -6,7 +6,6 @@ cd /usr/share/grafana
 CONFIG_DIR='/etc/dockerconf/grafana'
 CONFIG_FILE='/etc/grafana/grafana.ini'
 DB_FILE='/var/lib/grafana/grafana.db'
-SLEEP='20'
 LINE='---------------------------'
 
 GIT_CONFIG=${CONFIG_DIR}/grafana.ini
@@ -15,8 +14,12 @@ if [[ -f ${GIT_CONFIG} ]];
     cat ${GIT_CONFIG} > ${CONFIG_FILE}
   else
    echo 'No config file '${GIT_CONFIG}
-   sleep ${SLEEP}
    exit
+  fi
+
+if [[ ${CRUPT_PASS} == 'null' ]];
+  then
+    echo 'No set password: '${CRUPT_PASS}
   fi
 
 CONFIG_DB=${CONFIG_DIR}/enc.db
@@ -29,14 +32,12 @@ if [[ -f ${CONFIG_DB} ]];
     CRUPT_PASS=''
   else
     echo 'No DB file '${CONFIG_DB}
-    sleep ${SLEEP}
     exit
   fi
 
 if [[ ${ROOT_URL} == 'null' ]];
    then
      echo 'No set ROOT_URL'
-     sleep ${SLEEP}
      exit
    fi
 sed -i 's#ROOT_URL#'"${ROOT_URL}"'#' ${CONFIG_FILE}
