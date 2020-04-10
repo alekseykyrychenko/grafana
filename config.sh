@@ -19,7 +19,7 @@ if [[ -f ${GIT_CONFIG} ]];
 
 if [[ ${CRUPT_PASS} == 'null' ]];
   then
-    echo 'No set password: '${CRUPT_PASS}
+    echo 'No set password: CRUPT_PASS'
   fi
 
 CONFIG_DB=${CONFIG_DIR}/enc.db
