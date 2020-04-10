@@ -20,7 +20,7 @@ if [[ -f ${GIT_CONFIG} ]];
   fi
 
 CONFIG_DB=${CONFIG_DIR}/enc.db
-if [[ -f ${CONFIG_DB} ];
+if [[ -f ${CONFIG_DB} ]];
   do
     rm -f ${DB_FILE}
     openssl enc -aes-256-cbc -d -a -in ${CONFIG_DB} -out ${DB_FILE} -k ${CRUPT_PASS}
