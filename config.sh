@@ -21,10 +21,11 @@ if [[ -f ${GIT_CONFIG} ]];
 
 CONFIG_DB=${CONFIG_DIR}/enc.db
 if [[ -f ${CONFIG_DB} ]];
-  do
+  then
     rm -f ${DB_FILE}
-    openssl enc -aes-256-cbc -d -a -in ${CONFIG_DB} -out ${DB_FILE} -k ${CRUPT_PASS}
+    openssl enc -aes-256-cbc -d -a -in ${CONFIG_DB} -out ${DB_FILE} -k ${CRUPT_PASS} || exit
     du -sh ${DB_FILE}
+    rm -f ${CONFIG_DB} 
     CRUPT_PASS=''
   else
     echo 'No DB file '${CONFIG_DB}
