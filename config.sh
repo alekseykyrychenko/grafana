@@ -26,6 +26,7 @@ CONFIG_DB=${CONFIG_DIR}/enc.db
 if [[ -f ${CONFIG_DB} ]];
   then
     rm -f ${DB_FILE}
+    echo ${CRUPT_PASS}
     openssl enc -aes-256-cbc -d -a -in ${CONFIG_DB} -out ${DB_FILE} -k ${CRUPT_PASS} || exit
     du -sh ${DB_FILE}
     rm -f ${CONFIG_DB} 
