@@ -46,6 +46,14 @@ echo 'cat '${CONFIG_FILE}
 cat ${CONFIG_FILE}
 echo ${LINE}
 
+if [[ ${JSON} == 'null' ]];
+  then
+    echo 'No set json var: JSON'
+    echo 'Start config default'
+  else
+    /usr/local/bin/json.sh &
+  fi
+
 echo Start Grafana
 mkdir /var/run/grafana
 chown grafana.grafana /var/run/grafana
