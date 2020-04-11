@@ -8,6 +8,11 @@ su -s /bin/bash grafana -c "/usr/sbin/grafana-server    --config=${CONF_FILE}   
                             cfg:default.paths.logs=${LOG_DIR}                       \
                             cfg:default.paths.data=${DATA_DIR}                      \
                             cfg:default.paths.plugins=${PLUGINS_DIR}                \
-                            cfg:default.paths.provisioning=${PROVISIONING_CFG_DIR}"
-                            
+                            cfg:default.paths.provisioning=${PROVISIONING_CFG_DIR}" &&\
+      while [[ -z $(curl -Is http://localhost:3000/logind|head -n 1|grep ' 200 OK') ]]; 
+        do 
+           echo -n -; sleep 1; 
+        done &&\
+        
+        
                             
