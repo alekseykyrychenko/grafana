@@ -5,7 +5,7 @@ from grafana_api.grafana_face import GrafanaFace
 import json
 import glob
 
-grafana_api = GrafanaFace(auth='eyJrIjoibEhEUUNFMlJUUzNqRFVlc3lSWWloTExrQ0x3SEEzNTgiLCJuIjoiYXBpIiwiaWQiOjF9',
+grafana_api = GrafanaFace(auth=('admin', 'HG73gwe9e3rhel02herq0303h'),
                           host='localhost', port='3000', protocol='http')
 
 for ls_file in glob.glob("/etc/conf/*.json"):
