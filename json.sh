@@ -13,6 +13,6 @@ su -s /bin/bash grafana -c "/usr/sbin/grafana-server    --config=${CONF_FILE}   
         do 
            echo -n -; sleep 1; 
         done &&\
-        
-        
+     python /etc/dockerconf/grafana/create-dashboard.py
+kill $(cat /var/run/grafana/grafana-server.pid)        
                             
