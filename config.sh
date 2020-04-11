@@ -41,6 +41,14 @@ case ${JSON} in
          echo 'Start config default'
          ;;
   true ) /usr/local/bin/json.sh "${CMD}"
+  
+         chmod +x /etc/dockerconf/grafana/set_password.py
+         [[ "${GRAFANA_PASS}" != 'null' ]] &&\
+              /etc/dockerconf/grafana/set_password.py 2 "${GRAFANA_PASS}"
+         [[ "${ADMIN_PASS}" != 'null' ]] &&\
+              /etc/dockerconf/grafana/set_password.py 1 "${ADMIN_PASS}"
+
+         kill $(cat /var/run/grafana/grafana-server.pid) 
          ;;
      * ) echo 'Error parametr: JSON'
          exit
