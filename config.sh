@@ -8,15 +8,6 @@ CONFIG_FILE='/etc/grafana/grafana.ini'
 DB_FILE='/var/lib/grafana/grafana.db'
 LINE='---------------------------'
 
-GIT_CONFIG=${CONFIG_DIR}/grafana.ini
-if [[ -f ${GIT_CONFIG} ]];
-  then
-    cat ${GIT_CONFIG} > ${CONFIG_FILE}
-  else
-   echo 'No config file '${GIT_CONFIG}
-   exit
-  fi
-
 if [[ ${CRUPT_PASS} == 'null' ]];
   then
     echo 'No set password: CRUPT_PASS'
@@ -52,6 +43,15 @@ if [[ ${JSON} == 'null' ]];
     echo 'Start config default'
   else
     /usr/local/bin/json.sh &
+  fi
+
+GIT_CONFIG=${CONFIG_DIR}/grafana.ini
+if [[ -f ${GIT_CONFIG} ]];
+  then
+    cat ${GIT_CONFIG} > ${CONFIG_FILE}
+  else
+   echo 'No config file '${GIT_CONFIG}
+   exit
   fi
 
 echo Start Grafana
