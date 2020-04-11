@@ -26,17 +26,6 @@ if [[ -f ${CONFIG_DB} ]];
     exit
   fi
 
-if [[ ${ROOT_URL} == 'null' ]];
-   then
-     echo 'No set ROOT_URL'
-     exit
-   fi
-sed -i 's#ROOT_URL#'"${ROOT_URL}"'#' ${CONFIG_FILE}
-echo ${LINE}
-echo 'cat '${CONFIG_FILE}
-cat ${CONFIG_FILE}
-echo ${LINE}
-
 echo Start Grafana
 mkdir /var/run/grafana && chown grafana.grafana /var/run/grafana
 
@@ -57,6 +46,17 @@ if [[ -f ${GIT_CONFIG} ]];
    echo 'No config file '${GIT_CONFIG}
    exit
   fi
+  
+ if [[ ${ROOT_URL} == 'null' ]];
+   then
+     echo 'No set ROOT_URL'
+     exit
+   fi
+sed -i 's#ROOT_URL#'"${ROOT_URL}"'#' ${CONFIG_FILE}
+echo ${LINE}
+echo 'cat '${CONFIG_FILE}
+cat ${CONFIG_FILE}
+echo ${LINE}
 
 su -s /bin/bash grafana -c "/usr/sbin/grafana-server    --config=${CONF_FILE}       \
                             --pidfile=${PID_FILE_DIR}/grafana-server.pid            \
