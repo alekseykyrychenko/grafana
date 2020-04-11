@@ -3,6 +3,13 @@
 echo Config
 source /etc/sysconfig/grafana-server
 cd /usr/share/grafana
+CMD="/usr/sbin/grafana-server    --config=${CONF_FILE}       \
+                            --pidfile=${PID_FILE_DIR}/grafana-server.pid            \
+                            --packaging=rpm                                         \
+                            cfg:default.paths.logs=${LOG_DIR}                       \
+                            cfg:default.paths.data=${DATA_DIR}                      \
+                            cfg:default.paths.plugins=${PLUGINS_DIR}                \
+                            cfg:default.paths.provisioning=${PROVISIONING_CFG_DIR}"
 CONFIG_DIR='/etc/dockerconf/grafana'
 CONFIG_FILE='/etc/grafana/grafana.ini'
 DB_FILE='/var/lib/grafana/grafana.db'
@@ -34,7 +41,7 @@ if [[ ${JSON} == 'null' ]];
     echo 'No set json var: JSON'
     echo 'Start config default'
   else
-    /usr/local/bin/json.sh
+    /usr/local/bin/json.sh "${CMD}"
   fi
 
 GIT_CONFIG=${CONFIG_DIR}/grafana.ini
@@ -58,10 +65,4 @@ echo 'cat '${CONFIG_FILE}
 cat ${CONFIG_FILE}
 echo ${LINE}
 
-su -s /bin/bash grafana -c "/usr/sbin/grafana-server    --config=${CONF_FILE}       \
-                            --pidfile=${PID_FILE_DIR}/grafana-server.pid            \
-                            --packaging=rpm                                         \
-                            cfg:default.paths.logs=${LOG_DIR}                       \
-                            cfg:default.paths.data=${DATA_DIR}                      \
-                            cfg:default.paths.plugins=${PLUGINS_DIR}                \
-                            cfg:default.paths.provisioning=${PROVISIONING_CFG_DIR}"
+su -s /bin/bash grafana -c "${CMD}"
