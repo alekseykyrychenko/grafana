@@ -36,13 +36,16 @@ if [[ -f ${CONFIG_DB} ]];
 echo Start Grafana
 mkdir /var/run/grafana && chown grafana.grafana /var/run/grafana
 
-if [[ ${JSON} == 'null' ]];
-  then
-    echo 'No set json var: JSON'
-    echo 'Start config default'
-  else
-    /usr/local/bin/json.sh "${CMD}"
-  fi
+case ${JSON} in
+  false )echo 'No set json var: JSON'
+         echo 'Start config default'
+         ;;
+  true ) /usr/local/bin/json.sh "${CMD}"
+         ;;
+     * ) echo 'Error parametr: JSON'
+         exit
+         ;;
+esac
 
 GIT_CONFIG=${CONFIG_DIR}/grafana.ini
 if [[ -f ${GIT_CONFIG} ]];
