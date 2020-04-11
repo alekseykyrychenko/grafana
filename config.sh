@@ -49,6 +49,7 @@ GIT_CONFIG=${CONFIG_DIR}/grafana.ini
 if [[ -f ${GIT_CONFIG} ]];
   then
     cat ${GIT_CONFIG} > ${CONFIG_FILE}
+    rm -f ${GIT_CONFIG}
   else
    echo 'No config file '${GIT_CONFIG}
    exit
