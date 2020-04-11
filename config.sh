@@ -45,7 +45,7 @@ if [[ ${JSON} == 'null' ]];
     echo 'No set json var: JSON'
     echo 'Start config default'
   else
-    /usr/local/bin/json.sh &
+    /usr/local/bin/json.sh
   fi
 
 GIT_CONFIG=${CONFIG_DIR}/grafana.ini
