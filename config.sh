@@ -47,6 +47,8 @@ case ${JSON} in
               /etc/dockerconf/grafana/set_password.py 2 "${GRAFANA_PASS}"
          [[ "${ADMIN_PASS}" != 'null' ]] &&\
               /etc/dockerconf/grafana/set_password.py 1 "${ADMIN_PASS}"
+         GRAFANA_PASS=''
+         ADMIN_PASS=''
 
          kill $(cat /var/run/grafana/grafana-server.pid) 
          ;;
