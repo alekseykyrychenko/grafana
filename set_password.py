@@ -11,5 +11,6 @@ grafana_api = GrafanaFace(auth=('admin', 'HG73gwe9e3rhel02herq0303h'),
 grafana_user_id=str(sys.argv[1])
 grafana_pass=str(sys.argv[2])
 
-print("Set password: " + str(grafana_api.users.get_user(grafana_user_id)))
+UserName=grafana_api.users.get_user(grafana_user_id)
+print("Set password: " + str(UserName[login]))
 grafana_api.admin.change_user_password(grafana_user_id, grafana_pass)
