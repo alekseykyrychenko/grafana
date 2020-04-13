@@ -17,6 +17,7 @@ for ls_file in glob.glob("/etc/conf/*.json"):
       "folderId": "0",
       "overwrite": "false"
     }
+    print post_json
     try:
       print (grafana_api.dashboard.update_dashboard(post_json))
     except:
