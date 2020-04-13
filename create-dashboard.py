@@ -14,8 +14,8 @@ for ls_file in glob.glob("/etc/conf/*.json"):
     dashboard = json.load(json_file)
     post_json = {
       "dashboard": dashboard,
-      "folderId": "0",
-      "overwrite": "false"
+      "folderId": 0,
+      "overwrite": false
     }
     print post_json
     try:
