@@ -17,8 +17,7 @@ for ls_file in glob.glob("/etc/conf/*.json"):
       "folderId": 0,
       "overwrite": False
     }
-    print post_json
     try:
       print (grafana_api.dashboard.update_dashboard(post_json))
     except:
-      print ("File: " + ls_file + "not consistent")
+      print ("File: " + ls_file + " not consistent")
