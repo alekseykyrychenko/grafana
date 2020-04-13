@@ -12,8 +12,8 @@ for ls_file in glob.glob("/etc/conf/*.json"):
   print(ls_file)
   with open(ls_file) as json_file:
     dashboard = json.load(json_file)
-    dashboard["id"] = null
-    dashboard["uid"] = null
+    dashboard["id"] = None
+    dashboard["uid"] = None
     dashboard["version"] = 0
     post_json = {
       "dashboard": dashboard,
