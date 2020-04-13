@@ -12,5 +12,5 @@ grafana_user_id=str(sys.argv[1])
 grafana_pass=str(sys.argv[2])
 
 UserName=grafana_api.users.get_user(grafana_user_id)
-print("Set password: " + str(UserName[login]))
+print("Set password: " + str(UserName["login"]))
 grafana_api.admin.change_user_password(grafana_user_id, grafana_pass)
