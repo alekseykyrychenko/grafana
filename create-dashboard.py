@@ -18,6 +18,7 @@ with open("/etc/conf/system.config") as system_file:
 for ls_file in glob.glob("/etc/conf/*.json"):
   print(ls_file)
   with open(ls_file) as json_file:
+    print(json_file.replace(olltv,system_config["org"]))
     dashboard = json.load(json_file)
     dashboard["id"] = None
     dashboard["uid"] = None
