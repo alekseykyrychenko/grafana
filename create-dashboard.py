@@ -9,6 +9,7 @@ grafana_api = GrafanaFace(auth=('admin', 'HG73gwe9e3rhel02herq0303h'),
                           host='localhost', port='3000', protocol='http')
 
 with open("/etc/conf/system.config") as system_file:
+  try:
   system_config = json.load(system_file)
   print ("Org: " + system_config["org"])
   except:
