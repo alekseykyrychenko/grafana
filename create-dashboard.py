@@ -14,8 +14,11 @@ with open("/etc/conf/system.config") as system_file:
     print ("Org: " + system_config["org"])
   except:
     print ("Error system file")
-    
-with open("/etc/conf/datasource.config") as datasource_file:
+
+
+for ls_datasource in glob.glob("/etc/conf/datasource*.config"):
+ print(ls_datasource)
+ with open(ls_datasource) as datasource_file:
   try:
     datasource_config = json.load(datasource_file)
     grafana_api.datasource.create_datasource(datasource_config)
