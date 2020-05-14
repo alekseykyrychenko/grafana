@@ -41,3 +41,10 @@ for ls_file in glob.glob("/etc/conf/*.json"):
       print (grafana_api.dashboard.update_dashboard(post_json))
     except:
       print ("File: " + ls_file + " not consistent")
+      
+try:
+ dashboards_info=grafana_api.search.search_dashboards(tag="start")
+ grafana_api.organizations.organization_preference_update(home_dashboard_id=dashboards_info[0]["id"])
+ print(grafana_api.organizations.organization_preference_get())
+except:
+   print ("No set home dashboard")
