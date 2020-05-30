@@ -57,11 +57,15 @@ case ${JSON} in
          ;;
 esac
 
-GIT_CONFIG=${CONFIG_DIR}/grafana.ini
+if [[ -f /etc/conf/grafana.ini ]];
+  then
+    GIT_CONFIG='/etc/conf/grafana.ini'
+  else
+    GIT_CONFIG=${CONFIG_DIR}/grafana.ini
+  fi
 if [[ -f ${GIT_CONFIG} ]];
   then
     cat ${GIT_CONFIG} > ${CONFIG_FILE}
-    rm -f ${GIT_CONFIG}
   else
    echo 'No config file '${GIT_CONFIG}
    exit
