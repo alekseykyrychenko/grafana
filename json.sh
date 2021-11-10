@@ -10,7 +10,7 @@ while [[ -z $(curl -Is http://localhost:3000/login|head -n 1|grep ' 200 OK') ]];
            echo -n -; 
            sleep 1;
            VAR=$((${VAR}+1))
-           if [[ ${VAR} > 20 ]]; then exit; fi
+           #if [[ ${VAR} > 20 ]]; then exit; fi
      done && echo 'Start create-dashboard.py' &&\
 python /etc/dockerconf/grafana/create-dashboard.py       
                             
