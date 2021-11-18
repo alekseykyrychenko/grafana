@@ -25,7 +25,7 @@ for ls_datasource in glob.glob("/etc/conf/datasource*.config"):
   except:
     print ("Error open datasource.config")
   
-for ls_file in glob.glob("/etc/conf/*.json"):
+for ls_file in glob.glob("/etc/json/*.json"):
   print(ls_file)
   with open(ls_file) as json_file:
     dashboard = json.load(json_file)
