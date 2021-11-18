@@ -4,6 +4,9 @@ echo 'Start "'${1}'"'
 
 su -s /bin/bash grafana -c "${1}" > /dev/null &
 
+mkdir /etc/json
+tar -xzvf /etc/conf/config.tar.gz -C /etc/json/
+
 VAR=0
 while [[ -z $(curl -Is http://localhost:3000/login|head -n 1|grep ' 200 OK') ]]; 
      do 
